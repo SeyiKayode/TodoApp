@@ -1,0 +1,29 @@
+{% extends 'todo/base.html' %}
+{% block content %}
+    <div class="row">
+    <div class="col-md-5 mt-4">
+        <h4>Add Task</h4>
+        <form action="add_todo/" method="POST">
+            <input type="text" name="content" class="form-control mb-2 mr-sm-2" placeholder="type here...">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    </div><br>
+    {% for todo_item in todo_items %}
+    <div class="row">
+    <div class="col-md-8">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <h4>{{ todo_item.text }}</h4><br>
+                {{ todo_item.date }}
+                <div class="float-right">
+                    <form action="delete_todo/{{ todo_item.id }}">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </div>
+    {% endfor %}
+{% endblock %}
